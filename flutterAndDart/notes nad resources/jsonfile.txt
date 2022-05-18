@@ -1,0 +1,71 @@
+void main() {
+ 
+  var myMap={
+    'name':'osman',
+    'age': 34,
+    'city':'mogdisho',
+     'address': [
+       {
+         'country':'somalia',
+         'city':'mogdisho'
+         
+       },
+       {
+         'country':'kenya',
+         'city':'nairobi'
+         
+       }
+     ] 
+  };
+    var obj=Person.fromjson(myMap);
+  var myAddress = obj.address;
+  myAddress!.map((e){
+    print(e.country);
+  }).toList();
+  
+  
+}
+   class Person {
+      
+     String? name;
+     int? age;
+     String?city;
+     
+     List<Address>? address;
+     
+     Person({ this.name, this.age, this.city});
+     
+     Person.fromjson(Map<String, dynamic>json){
+       name=json['name'];
+       age=json['age'];
+       city=json['city'];
+       if(json['address']!=null){
+         address=<Address>[];
+         (json['address'] as List).forEach((e){
+           address!.add(Address.fromjson(e));
+           
+         });
+       };
+     
+     }
+    }
+
+ class Address {
+      
+     String? country;
+     String? city;
+     
+     
+     Address({ this.country,  this.city});
+   
+    Address.fromjson(Map<String, dynamic>json){
+       country=json['country'];
+       city=json['city'];
+    }
+       
+    }
+  
+   
+ 
+ 
+  
